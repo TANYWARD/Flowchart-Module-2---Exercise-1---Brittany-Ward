@@ -1,0 +1,81 @@
+START
+
+# Define constants
+BASE_FEE = 5.00
+TAX_RATE = 0.14
+SENTINEL = -1
+
+# Function to calculate the total bill
+FUNCTION calculateBill(numMessages):
+    IF numMessages <= 100 THEN
+        additionalCharges = 0
+    ELSE IF numMessages <= 300 THEN
+        additionalCharges = (numMessages - 100) * 0.03
+    ELSE
+        additionalCharges = (300 - 100) * 0.03 + (numMessages - 300) * 0.02
+    ENDIF
+    totalBeforeTax = BASE_FEE + additionalCharges
+    taxAmount = totalBeforeTax * TAX_RATE
+    totalAfterTax = totalBeforeTax + taxAmount
+    RETURN totalBeforeTax, totalAfterTax
+END FUNCTION
+
+# Collect customer data until the sentinel value is entered
+WHILE True:
+    # Get customer input
+    PRINT "Enter area code (three digits) or -1 to stop:"
+    areaCode = GET input
+    IF areaCode == SENTINEL THEN
+        BREAK
+    ENDIF
+    
+    PRINT "Enter phone number (seven digits):"
+    phoneNumber = GET input
+    
+    PRINT "Enter total number of text messages sent:"
+    numMessages = GET input
+
+    # Calculate the bill
+    totalBeforeTax, totalAfterTax = calculateBill(numMessages)
+
+    # Display details only for customers who sent more than 100 texts
+    IF numMessages > 100 THEN
+        PRINT "Customer Info: Area code:", areaCode, "Phone number:", phoneNumber
+        PRINT "Total messages sent:", numMessages
+        PRINT "Monthly bill before tax: $", totalBeforeTax
+        PRINT "Monthly bill after tax: $", totalAfterTax
+    ENDIF
+
+END WHILE
+
+# Collect data for specific area code
+PRINT "Enter the area code to view bills from that area:"
+targetAreaCode = GET input
+
+WHILE True:
+    PRINT "Enter area code (three digits) or -1 to stop:"
+    areaCode = GET input
+    IF areaCode == SENTINEL THEN
+        BREAK
+    ENDIF
+    
+    PRINT "Enter phone number (seven digits):"
+    phoneNumber = GET input
+    
+    PRINT "Enter total number of text messages sent:"
+    numMessages = GET input
+
+    # Calculate the bill
+    totalBeforeTax, totalAfterTax = calculateBill(numMessages)
+
+    # Only display details for customers in the specified area code
+    IF areaCode == targetAreaCode THEN
+        PRINT "Customer Info: Area code:", areaCode, "Phone number:", phoneNumber
+        PRINT "Total messages sent:", numMessages
+        PRINT "Monthly bill before tax: $", totalBeforeTax
+        PRINT "Monthly bill after tax: $", totalAfterTax
+    ENDIF
+
+END WHILE
+
+STOP
