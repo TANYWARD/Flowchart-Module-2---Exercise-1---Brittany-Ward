@@ -1,0 +1,50 @@
+// Pseudocode for Merging Customer Records
+
+// Declare the input and output files
+InputFile geraldinesData
+InputFile geraldsData
+OutputFile mergedData
+
+// Main Program
+start
+    // Open the input files
+    open geraldinesData "Geraldines Businesses.csv"
+    open geraldsData "Geralds Businesses.csv"
+    open mergedData "Merged Customers.csv"
+
+    // Initialize an empty list to track unique customer numbers
+    num uniqueCustomerNumbers[] = {}
+
+    // Read records from Geraldine's file
+    while not eof geraldinesData
+        // Read customer record
+        input customerNumber, lastName, address, propertySize from geraldinesData
+
+        // Check for duplicates
+        if customerNumber not in uniqueCustomerNumbers then
+            // Add to unique list
+            add customerNumber to uniqueCustomerNumbers
+            // Write record to merged file
+            output customerNumber, lastName, address, propertySize to mergedData
+        endif
+    endwhile
+
+    // Read records from Gerard's file
+    while not eof geraldsData
+        // Read customer record
+        input customerNumber, lastName, address, propertySize from geraldsData
+
+        // Check for duplicates
+        if customerNumber not in uniqueCustomerNumbers then
+            // Add to unique list
+            add customerNumber to uniqueCustomerNumbers
+            // Write record to merged file
+            output customerNumber, lastName, address, propertySize to mergedData
+        endif
+    endwhile
+
+    // Close all files
+    close geraldinesData
+    close geraldsData
+    close mergedData
+stop
