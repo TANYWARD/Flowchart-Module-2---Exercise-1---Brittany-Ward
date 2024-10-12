@@ -1,0 +1,26 @@
+# Define the greaterThan function
+def greaterThan(x, y):  # Function accepting two parameters x and y
+    if x > y:  # Check if x is greater than y
+        return True  # Return True if x is greater
+    else:
+        return False  # Return False otherwise
+
+# Main section of the program
+a = 2  # Assign 2 to variable a
+b = 3  # Assign 3 to variable b
+
+# Call the greaterThan function and store the result
+result = greaterThan(a, b)
+
+# Print the output statement, converting a, b, and result to string
+print("The statement " + str(a) + " is greater than " + str(b) + " is " + str(result))
+
+# Change variables for testing different scenarios
+a = 10  # Assign 10 to variable a
+b = 6   # Assign 6 to variable b
+
+# Call the greaterThan function again with new values
+result = greaterThan(a, b)
+
+# Print the output statement for the new values
+print("The statement " + str(a) + " is greater than " + str(b) + " is " + str(result))
