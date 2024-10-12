@@ -1,0 +1,12 @@
+# Define a list of 15 numbers
+numbers = [1, 4, 7, 8, 12, 15, 20, 21, 30, 33, 40, 45, 50, 51, 60]
+
+# Loop through the list
+for number in numbers:
+    # Check if the number is even
+    if number % 2 == 0:
+        # If even, print that it's even
+        print(str(number) + " is even")
+    else:
+        # If odd, print that it's odd
+        print(str(number) + " is odd")
